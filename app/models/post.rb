@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   has_many :comment
 
   def recent_five_posts
-    posts.last(5)
+    comments.last(5)
   end
 
   def update_posts_counter
