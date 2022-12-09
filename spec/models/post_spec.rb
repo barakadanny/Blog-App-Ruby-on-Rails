@@ -70,4 +70,19 @@ RSpec.describe Post, type: :model do
       expect(subject).to_not be_valid
     end
   end
+
+  context 'Return recent five posts' do
+    it 'should return 5 posts' do
+      5.times do
+        Post.create(
+          title: 'Post',
+          text: 'It is valid',
+          likes_counter: 0,
+          user_id: @user.id,
+          comments_counter: 2
+        )
+      end
+      expect(Post.last(5).count).to eq(5)
+    end
+  end
 end
