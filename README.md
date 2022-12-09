@@ -87,11 +87,7 @@ In order to run this project you need:
 
 Clone this repository to your desired folder:
 
-`git clone https://github.com/skyv26/Blog-App.git`
-
-then
-
-`cd Blog-App`
+`git clone https://github.com/barakadanny/Blog-App-Ruby-on-Rails.git`
 
 ### Install
 
