@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
   p person = User.create(
-    name: 'Duane',
-    photo: 'https://duane.com/me.png',
-    bio: 'Iam Duane David.',
+    name: 'Test',
+    photo: 'https://test.com/me.png',
+    bio: 'Iam Test runnint.',
     post_counter: 0
   )
 
