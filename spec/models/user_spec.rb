@@ -10,7 +10,7 @@ RSpec.describe User, type: :model do
     )
   end
 
-  before { subject.save } 
+  before { subject.save }
 
   context 'Return valid data' do
     it 'should accept the name' do
