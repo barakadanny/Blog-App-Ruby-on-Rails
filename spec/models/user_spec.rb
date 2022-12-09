@@ -40,4 +40,18 @@ RSpec.describe User, type: :model do
       expect(subject).to_not be_valid
     end
   end
+
+  context 'Return recent three post' do
+    it 'should return the recent three post' do
+      3.times do
+        Post.create(
+          title: 'Post',
+          text: 'It is valid',
+          likes_counter: 0,
+          comments_counter: 2
+        )
+      end
+      expect(Post.last(3).count).to eq(3)
+    end
+  end
 end
