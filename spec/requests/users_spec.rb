@@ -1,7 +1,5 @@
 require 'rails_helper'
 
-require 'rails_helper'
-
 RSpec.describe 'Users', type: :request do
   describe 'users request' do
     before(:example) do
