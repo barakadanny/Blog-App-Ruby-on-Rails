@@ -5,12 +5,18 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= favicon_link_tag asset_path('icons8-globe-40.png') %>
   </head>
 
   <body>
-    <%= yield %>
+  <%# <%= render "layouts/header" %>
+  <div class="max-w-screen-xl mx-auto">
+      <%= yield %>
+  </div>
+  <%# <%= render "layouts/footer" %> 
   </body>
 </html>
