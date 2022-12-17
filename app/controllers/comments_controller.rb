@@ -11,15 +11,15 @@ class CommentsController < ApplicationController
     end
     redirect_to user_post_path(current_user, post)
   end
-    
+
   def new
-      @comment = Comment.new
-      @post = Post.find(params[:post_id])
+    @comment = Comment.new
+    @post = Post.find(params[:post_id])
   end
-    
+
   private
-    
+
   def comment_params
-      params.require(:comment).permit(:text)
+    params.require(:comment).permit(:text)
   end
 end
