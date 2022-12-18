@@ -58,6 +58,9 @@
                     </div>
                     <% end %>
                   </div>
+                  <%= form_with url: "/users/#{@post.user_id}/posts/#{@post.id}/likes" do |f| %>
+                    <%= f.submit "Like" %>
+                  <% end %> 
                 </div>
               </div>
             <%# end post cards %>
