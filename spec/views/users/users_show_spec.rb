@@ -23,7 +23,7 @@ RSpec.describe 'renders users Show Page', type: :feature do
   end
 
   it 'should displays static text' do
-    expect(page).to have_content('Posts')
+    expect(page).to have_content('Bio')
   end
 
   it 'Shows the User name' do
