@@ -1,44 +1,38 @@
 require 'rails_helper'
 
-RSpec.describe 'renders users Posts Page', type: :feature do
+RSpec.describe 'Render posts index page', type: :feature do
   before :each do
     @user = User.create(name: 'Baraka Danny', photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
-                        bio: 'This is for testing purpose', post_counter: 6)
-    @user2 = User.create(name: 'Danny John', photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
-                         bio: 'This is for testing purpose', post_counter: 9)
-    @post1 = Post.create(user: @user, title: 'lion', text: 'anything on unit tests')
-    @post2 = Post.create(user: @user, title: 'gun', text: 'anything on unit tests')
-    Like.create(user: @user2, post: @post1)
-    Like.create(user: @user2, post: @post2)
-    Comment.create(user: @user2, post: @post1, text: 'This is a comment')
+                        bio: 'Dummy text for testing', post_counter: 6)
+    @first_post = Post.create(title: 'Hello', text: 'This is a post text', comments_counter: 0, likes_counter: 0,
+                              user_id: @user.id)
+    5.times do |_i|
+      Comment.create(text: 'Nice post!!', user_id: @user.id, post_id: @first_post.id)
+    end
+    visit user_post_path(@first_post.user, @first_post)
   end
 
-  scenario 'should display user name and bio' do
-    visit '/users/1/posts/'
-    expect(page).to have_content(@user.name)
+  scenario 'displays post text' do
+    expect(page).to have_content('This is a post text')
   end
 
-  scenario 'should display user posts' do
-    visit '/users/1/posts/'
-    expect(page).to have_content(@post1.title)
-    expect(page).to have_content(@post2.title)
+  scenario 'display the post title' do
+    expect(page).to have_content(@first_post.title)
   end
 
-  # scenario 'should display user posts likes' do
-  #   visit user_posts_path(id: @user.id)
-  #   expect(page).to have_content(@post1.likes.count)
-  #   expect(page).to have_content(@post2.likes.count)
+  scenario 'display the post body' do
+    expect(page).to have_content(@first_post.text)
+  end
+
+  scenario 'display the first comment on a post' do
+    expect(page).to have_content('Hello')
+  end
+
+  # scenario 'display the how many comments' do
+  #   expect(page).to have_content('Comments: 5')
   # end
 
-  # scenario 'should display user posts comments' do
-  #   visit user_posts_path(id: @user.id)
-  #   expect(page).to have_content(@post1.comments.count)
-  #   expect(page).to have_content(@post2.comments.count)
-  # end
-
-  # scenario 'should redirect to post show page' do
-  #   visit user_posts_path(id: @user.id)
-  #   click_link(@post1.title)
-  #   expect(page).to have_current_path(post_path(id: @post1.id))
+  # scenario 'display the how many Likes' do
+  #   expect(page).to have_content('Likes: 0')
   # end
 end
