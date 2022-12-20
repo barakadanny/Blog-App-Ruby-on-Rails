@@ -28,11 +28,11 @@ RSpec.describe 'Render posts index page', type: :feature do
     expect(page).to have_content('Hello')
   end
 
-  # scenario 'display the how many comments' do
-  #   expect(page).to have_content('Comments: 5')
-  # end
+  scenario 'display the how many comments' do
+    expect(page).to have_content('5')
+  end
 
-  # scenario 'display the how many Likes' do
-  #   expect(page).to have_content('Likes: 0')
-  # end
+  scenario 'display the how many Likes' do
+    expect(page).to have_content('0')
+  end
 end
