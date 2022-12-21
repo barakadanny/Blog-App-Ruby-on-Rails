@@ -37,4 +37,11 @@ RSpec.describe 'renders users Show Page', type: :feature do
   it 'it should render the view all user posts link' do
     expect(page).to have_link('See all posts')
   end
+
+  it 'should display the last 3 posts of the user' do
+    last_3_posts = @user.posts.order(created_at: :desc).limit(3)
+    last_3_posts.each do |post|
+      expect(page).to have_content(post.title)
+    end
+  end
 end
