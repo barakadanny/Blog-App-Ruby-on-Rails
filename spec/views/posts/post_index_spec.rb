@@ -12,20 +12,13 @@ RSpec.describe 'Render posts index page', type: :feature do
     visit user_post_path(@first_post.user, @first_post)
   end
 
-  scenario 'displays post text' do
-    expect(page).to have_content('This is a post text')
+  scenario 'displays profile picture' do
+    visit '/users/1/posts/1/'
+    expect(page).to have_content('Post Detail')
   end
 
-  scenario 'display the post title' do
-    expect(page).to have_content(@first_post.title)
-  end
-
-  scenario 'display the post body' do
-    expect(page).to have_content(@first_post.text)
-  end
-
-  scenario 'display the first comment on a post' do
-    expect(page).to have_content('Hello')
+  scenario 'display username' do
+    expect(page).to have_content(@user.name)
   end
 
   scenario 'display the how many comments' do
@@ -34,5 +27,22 @@ RSpec.describe 'Render posts index page', type: :feature do
 
   scenario 'display the how many Likes' do
     expect(page).to have_content('0')
+  end
+
+  scenario 'Should display post title' do
+    expect(page).to have_content(@first_post.title)
+  end
+
+  scenario 'Should display post text' do
+    expect(page).to have_content(@first_post.text)
+  end
+
+  scenario 'Should display pagination' do
+    visit '/users/1/posts/'
+    expect(page).to have_content('Pagination')
+  end
+
+  scenario 'Should redirects to posts show page when you click on post' do
+    expect(page).to have_content('Post Detail')
   end
 end
