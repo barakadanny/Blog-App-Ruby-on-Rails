@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  load_and_authorize_resource
+
   def create
     post = Post.includes(:author, :comments, :likes).find(params[:post_id])
     comment = Comment.new(comment_params)
@@ -15,6 +17,19 @@ class CommentsController < ApplicationController
   def new
     @comment = Comment.new
     @post = Post.find(params[:post_id])
+  end
+
+  def destroy
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id])
+    @comment.destroy
+
+    if @comment.destroy
+      @comment.decrement_comments_counter
+      redirect_to user_post_path(current_user, @post)
+    else
+      render :new
+    end
   end
 
   private
