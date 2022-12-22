@@ -87,3 +87,5 @@ gem 'rails-controller-testing'
 gem 'bullet', '~> 7.0'
 
 gem 'devise'
+
+gem 'cancancan'
