@@ -53,7 +53,10 @@
                     <div class="flex items center space-x-4 justify-between">
                       <div class="flex gap-3 space-y-1 justify-center">
                         <span class="text-sm"><%= comment.user.name %>: </span>
-                        <span class="text-sm"><%= comment.text %></span>
+                        <span class="text-sm"><%= comment.text %></span>        
+                        <% if can? :destroy, comment %>
+                         <%= link_to "Delete, user_post_comment_path(user_id: @user.id, post_id: @post.id, id: comment.id), method: :delete, class:"delete-comment" %>
+                        <% end %>
                       </div>
                     </div>
                     <% end %>
